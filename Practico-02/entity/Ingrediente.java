@@ -1,8 +1,9 @@
 package entity;
 
 import interfaces.Cocinable;
+import interfaces.Despensable;
 
-public class Ingrediente implements Cocinable {
+public class Ingrediente implements Cocinable, Despensable {
     private String nombre;
     private int cantidad;
 

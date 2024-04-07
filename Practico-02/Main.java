@@ -9,11 +9,8 @@ public class Main {
         Ingrediente ingrediente4 = new Ingrediente("Tomate", 6);
         Ingrediente ingrediente5 = new Ingrediente("Aceite de oliva", 500);
 
-
-        System.out.println(ingrediente1);
-        System.out.println(ingrediente2);
-        System.out.println(ingrediente3);
-        System.out.println(ingrediente4);
+        Utensilio utensilio1 = new Utensilio("Cuchillo");
+        Utensilio utensilio2 = new Utensilio("Olla");
 
         Despensa despensa = new Despensa();
 
@@ -40,11 +37,11 @@ public class Main {
         System.out.println("\nReceta de Ensalada de Frutas:");
         System.out.println(ensaladaDeFrutas);
 
-        Chef chef1 = new Chef("Juan", 1);
-        CocinaService.prepararReceta(ensalada, chef1, despensa.getIngredientes());
-
-        Chef chef2 = new Chef("Pepe", 2);
-        CocinaService.prepararReceta(ensaladaDeFrutas, chef2, despensa.getIngredientes());
+//        Chef chef1 = new Chef("Juan", 1);
+//        CocinaService.prepararReceta(ensalada, chef1, despensa.getIngredientes());
+//
+//        Chef chef2 = new Chef("Pepe", 2);
+//        CocinaService.prepararReceta(ensaladaDeFrutas, chef2, despensa.getIngredientes());
     }
 
 }

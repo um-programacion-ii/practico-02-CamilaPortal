@@ -1,31 +1,31 @@
 package entity;
 
-import java.util.ArrayList;
-import java.util.List;
+import interfaces.Despensable;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Despensa {
-    private List<Ingrediente> ingredientes;
+    private Map<String, Ingrediente> ingredientes;
 
     public Despensa(){
-        this.ingredientes = new ArrayList<>();
+        this.ingredientes = new HashMap<>();
     }
 
     public void addIngrediente(Ingrediente newIngrediente){
-        ingredientes.add(newIngrediente);
+        ingredientes.put(newIngrediente.getNombre(), newIngrediente);
         System.out.println("Se agregó a la despensa: " + newIngrediente.getNombre());
     }
 
     public void getIngrediente(String nombre, int cantidad){
-        for (Ingrediente i : ingredientes){
-            if (i.getNombre().equalsIgnoreCase(nombre)){
-                i.sacar(cantidad);
-                return;
-            }
+        Ingrediente ingrediente = ingredientes.get(nombre);
+        if (ingrediente != null) {
+            ingrediente.sacar(cantidad);
+        } else {
+            System.out.println("No tenés " + nombre + " en la despensa");
         }
-        System.out.println("No tenés " + nombre + " en la despensa");
     }
 
-    public List<Ingrediente> getIngredientes() {
+    public Map<String, Ingrediente> getIngredientes() {
         return ingredientes;
     }
 }
