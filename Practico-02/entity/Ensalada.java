@@ -9,8 +9,8 @@ public class Ensalada extends Receta{
                 new Ingrediente("Tomate", 2),
                 new Ingrediente("Aceite de oliva", 10)),
                 List.of(
-                        new Utensilio("Cuchillo"),
-                        new Utensilio("Bol")),
+                        new Utensilio("Cuchillo", 2),
+                        new Utensilio("Bol", 2)),
                 10,
                 "Lavar y cortar la lechuga y el tomate. Mezclar con aceite de oliva en el bol.");
     }

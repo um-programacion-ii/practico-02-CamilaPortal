@@ -16,7 +16,7 @@ public class Ingrediente implements Cocinable, Despensable {
 
         if (cantidad >= cantRetirada){
             this.cantidad -= cantRetirada;
-            System.out.println("Retiraste exitosamente. Quedan: "+ cantidad + " de " + nombre);
+            System.out.println("Retiraste exitosamente " + nombre );
         }
         else {
             System.out.println("La cantidad de " + nombre+ " retirar es mayor que la cantidad actual");
