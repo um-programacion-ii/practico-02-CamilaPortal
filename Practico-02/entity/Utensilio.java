@@ -23,8 +23,12 @@ public class Utensilio implements Despensable, Reutilizable {
         return vidaUtil;
     }
 
+    public void setVidaUtil(int vidaUtil) {
+        this.vidaUtil = vidaUtil;
+    }
+
     public void usar(int uso) {
-        if (vidaUtil > uso) {
+        if (vidaUtil >= uso) {
             vidaUtil-= uso;
             System.out.println("El utensilio " + nombre + " ha sido utilizado.");
         } else {

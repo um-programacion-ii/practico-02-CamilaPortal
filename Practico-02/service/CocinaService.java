@@ -13,21 +13,16 @@ public class CocinaService {
         System.out.println("\nChef " + chef.getNombre() + " preparando la siguiente receta:");
         System.out.println(receta);
 
+        DespensaService.verificarStock(despensaIngredientes, receta);
+        DespensaService.verificarVidaUtil(despensaUtensilios, receta);
+
         for (Ingrediente ingredienteReceta : receta.getIngredientes()) {
             Ingrediente ingredienteDespensa = despensaIngredientes.get(ingredienteReceta.getNombre());
-            if (ingredienteDespensa == null || ingredienteDespensa.getCantidad() < ingredienteReceta.getCantidad()) {
-                throw new StockInsuficiente("No hay suficiente " + ingredienteReceta.getNombre() +
-                        " en la despensa. Faltan " + (ingredienteReceta.getCantidad()) + " unidades.");
-            }
             ingredienteDespensa.sacar(ingredienteReceta.getCantidad());
         }
 
         for (Utensilio utensilioReceta : receta.getUtensilios()) {
             Utensilio utensilioDespensa = despensaUtensilios.get(utensilioReceta.getNombre());
-            if (utensilioDespensa == null || utensilioDespensa.getVidaUtil() < utensilioReceta.getVidaUtil()) {
-                throw new VidaUtilInsuficiente("La vida útil del utensilio " + utensilioReceta.getNombre() +
-                        " en la despensa no es suficiente para cocinar esta receta.");
-            }
             utensilioDespensa.usar(utensilioReceta.getVidaUtil());
         }
 
@@ -37,6 +32,7 @@ public class CocinaService {
             System.out.println("- " + ingrediente);
         }
         System.out.println("\nUtensilios restantes en la despensa:");
+        DespensaService.renovarUtensilios(despensaUtensilios);
         for (Utensilio utensilio : despensaUtensilios.values()) {
             System.out.println("- " + utensilio);
         }
