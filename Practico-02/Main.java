@@ -1,8 +1,10 @@
+import Excepciones.StockInsuficiente;
+import Excepciones.VidaUtilInsuficiente;
 import entity.*;
 import service.CocinaService;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws StockInsuficiente, VidaUtilInsuficiente {
         Ingrediente ingrediente1 = new Ingrediente("Agua", 500);
         Ingrediente ingrediente2 = new Ingrediente("Huevos", 6);
         Ingrediente ingrediente3 = new Ingrediente("Lechuga", 6);
@@ -25,8 +27,6 @@ public class Main {
         despensa.addUtensilio(utensilio2);
         despensa.addUtensilio(utensilio3);
 
-        despensa.getUtensilio("Cuchillo", 2);
-
         despensa.getIngrediente("Agua", 400);
         despensa.getIngrediente("Arroz", 1);
 
@@ -45,10 +45,24 @@ public class Main {
         System.out.println(ensaladaDeFrutas);
 
         Chef chef1 = new Chef("Juan", 1);
-        CocinaService.prepararReceta(ensalada, chef1, despensa.getIngredientes(), despensa.getUtensilios());
-
         Chef chef2 = new Chef("Pepe", 2);
-        CocinaService.prepararReceta(ensaladaDeFrutas, chef2, despensa.getIngredientes(), despensa.getUtensilios());
+
+        try {
+            CocinaService.prepararReceta(ensalada, chef1, despensa.getIngredientes(), despensa.getUtensilios());
+        } catch (StockInsuficiente e) {
+            System.out.println("Error: " + e.getMessage());
+        }catch (VidaUtilInsuficiente e) {
+            System.out.println("Error de vida útil insuficiente: " + e.getMessage());
+        }
+
+        try {
+            CocinaService.prepararReceta(ensaladaDeFrutas, chef2, despensa.getIngredientes(), despensa.getUtensilios());
+        } catch (StockInsuficiente e) {
+            System.out.println("Error: " + e.getMessage());
+        }catch (VidaUtilInsuficiente e) {
+            System.out.println("Error de vida útil insuficiente: " + e.getMessage());
+        }
+
     }
 
 }
